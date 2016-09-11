@@ -1,0 +1,41 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Inmortal</th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" placeholder="nombre" aria-describedby="basic-addon1">
+                </div>
+            </th>
+            <th>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" placeholder="correo" aria-describedby="basic-addon1">
+                </div>
+            </th>
+            <th>
+                <select name="inmortal" class="form-control">
+                    <option>Todos</option>
+                    <option value="0">No inmortal</option>
+                    <option value="1">En lista</option>
+                    <option value="2">Inmortal</option>
+                </select>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="competitor in competitors">
+            <td>{{competitor.name}}</td>
+            <td>{{competitor.mail}}</td>
+            <td ng-class="competitor.inmortal === 2 ? 'success' : competitor.inmortal === 1 ? 'warning' : ''"></td>
+            <td><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></td>
+        </tr>
+    </tbody>
+</table>

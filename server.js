@@ -6,10 +6,12 @@ var sellTikets = require('./controller/sell-tikets');
 var app = express();
 var port = process.env.PORT || 8080;
 
+app.use(express.static('view'));
+
 app.get('/api/venta', sellTikets.get);
 app.post('/api/venta', sellTikets.post);
 app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
+    res.sendFile(path.join(__dirname + '/view/index.html'));
 });
 
 app.listen(port);
@@ -23,7 +25,7 @@ var options = [{
   host: 'lh-sell-tickets.herokuapp.com'
 }];
 
-var min = 60000;
+var min = 300000;
 var max = 600000;
 // and the formula is:
 var random = function(){

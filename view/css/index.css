@@ -1,0 +1,7 @@
+.table tbody tr > td.success {
+  background-color: #a8ec8b;
+}
+
+.table tbody tr > td.warning {
+  background-color: #fff1a5;
+}

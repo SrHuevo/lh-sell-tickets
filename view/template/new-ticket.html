@@ -1,0 +1,27 @@
+<header>
+    <div class="form-group">
+        <a class="btn btn-success pull-right"></a>
+    </div>
+</header>
+<h2>Nueva Entrada</h2>
+<h3>Presiona el tabulador para cambiar de registro</h3>
+<form>
+    <div class="form-group">
+        <label class="control-label" for="name">Nombre y apellidos:</label>
+        <input class="form-control" id="name" type="text" ng-model="name" placeholder="Manolo Perez García">
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="mail">Email:</label>
+        <input class="form-control" id="mail" type="text" placeholder="manolo@gmail.com">
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn" ng-class="inmortal ? 'btn-success' : 'btn-default'" ng-click="inmortal = !inmortal">
+            <input type="hidden" ng-model="inmortal">
+            <i class="fa" ng-class="inmortal ? 'fa-check-square-o' : 'fa-square-o'" aria-hidden="true"></i>
+            <span>Inmortal</span>
+        </button>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-success"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Enviar</button>
+    </div>
+</form>
