@@ -1,4 +1,4 @@
-isLogin = false;
+isLogin = true;
 
 sellTickets.controller('NavController', ['$scope', function($scope){
     $scope.isLogin = isLogin;

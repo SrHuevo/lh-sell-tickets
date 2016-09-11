@@ -1,19 +1,29 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var path = require('path');
+var fs = require('fs');
 var bodyParser = require('body-parser');
-var sellTikets = require('./controller/sell-tikets');
+
+mongoose.Promise = global.Promise;
+var connection = mongoose.connect('mongodb://'+process.env.URI_MONGO_LHST, {user:process.env.USER_MONGO_LHST, pass:process.env.PASS_MONGO_LHST});
 
 var app = express();
-var port = process.env.PORT || 8080;
-
+app.use(bodyParser.json());
 app.use(express.static('view'));
 
-app.get('/api/venta', sellTikets.get);
-app.post('/api/venta', sellTikets.post);
+// dynamically include routes (Controller)
+fs.readdirSync('./controller').forEach(function (file) {
+  if(file.substr(-3) == '.js') {
+      var route = require('./controller/' + file);
+      route.controller(app);
+  }
+});
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname + '/view/index.html'));
 });
 
+
+var port = process.env.PORT || 8080;
 app.listen(port);
 
 
@@ -38,3 +48,6 @@ setInterval(function(){
 		});
 	});
 }, random());
+
+
+exports.connection = connection;
