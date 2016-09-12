@@ -11,6 +11,7 @@ module.exports.controller = function(app) {
 	});
 
 	app.put('/api/venta', function(req, resp) {
+		console.log(req.body);
 		var c = new Competitor(req.body);
 		c.save(function(err){
 			if(err) throw err;

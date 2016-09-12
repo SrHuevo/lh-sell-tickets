@@ -31,9 +31,6 @@ app.listen(port);
 
 //Heroku free no sleep
 var http = require('http');
-var options = [{
-  host: 'lh-sell-tickets.herokuapp.com'
-}];
 
 var min = 300000;
 var max = 600000;
@@ -42,11 +39,9 @@ var random = function(){
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 setInterval(function(){
-	options.forEach(function(e){
-		http.get(e, function(res) {
-		  console.log('STATUS: ' + res.statusCode);
-		});
-	});
+	http.get(process.env.URI_SERVER, function(res) {
+	  console.log('STATUS: ' + res.statusCode);
+  });
 }, random());
 
 
