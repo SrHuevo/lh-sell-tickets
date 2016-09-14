@@ -2,7 +2,7 @@ var Competitor = require('../model/competitor.model');
 var UserService = require('../service/user.service');
 
 module.exports.controller = function(app) {
-	app.get('/api/venta', function(req, resp){
+	app.get('/api/sell', function(req, resp){
 		UserService.isPassCorrect(UserService.decrypAuthorization(req.get('Authorization')), function(){
 			Competitor.find({}, function(err, competitors) {
 				if (err) throw err;
@@ -15,7 +15,7 @@ module.exports.controller = function(app) {
 		});
 	});
 
-	app.put('/api/venta', function(req, resp) {
+	app.put('/api/sell', function(req, resp) {
 		UserService.isPassCorrect(UserService.decrypAuthorization(req.get('Authorization')), function() {
 			console.log(req.body);
 			var c = new Competitor(req.body);
