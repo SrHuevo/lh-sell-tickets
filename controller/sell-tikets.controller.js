@@ -17,6 +17,7 @@ module.exports.controller = function(app) {
 
 	app.put('/api/venta', function(req, resp) {
 		UserService.isPassCorrect(UserService.decrypAuthorization(req.get('Authorization')), function() {
+			console.log(req.body);
 			var c = new Competitor(req.body);
 			c.save(function(err){
 				if(err) throw err;

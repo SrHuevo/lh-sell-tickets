@@ -27,8 +27,8 @@ sellTickets.config(function($routeProvider) {
         resolve : loginResolve
     })
     .when('/ticket', {
-        templateUrl : 'template/new-ticket.html',
-        controller : 'NewTicketController',
+        templateUrl : 'template/ticket.html',
+        controller : 'TicketController',
         resolve : loginResolve
     })
     .otherwise({
