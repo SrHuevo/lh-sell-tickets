@@ -5,7 +5,7 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise;
-var connection = mongoose.connect('mongodb://'+process.env.URI_MONGO_LHST, {user:process.env.USER_MONGO_LHST, pass:process.env.PASS_MONGO_LHST});
+var connection = mongoose.connect('mongodb://'+process.env.URI_MONGO_LHT, {user:process.env.USER_MONGO_LHT, pass:process.env.PASS_MONGO_LHT});
 
 var app = express();
 app.use(bodyParser.json());
