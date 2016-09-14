@@ -31,10 +31,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="competitor in competitors">
-            <td>{{competitor.name}}</td>
-            <td>{{competitor.mail}}</td>
-            <td ng-class="competitor.inmortal === 2 ? 'success' : competitor.inmortal === 1 ? 'warning' : ''"></td>
+        <tr ng-repeat="ticket in tickets">
+            <td>{{ticket.name}}</td>
+            <td>{{ticket.mail}}</td>
+            <td ng-class="ticket.inmortal === 2 ? 'success' : ticket.inmortal === 1 ? 'warning' : ''"></td>
             <td><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></td>
         </tr>
     </tbody>

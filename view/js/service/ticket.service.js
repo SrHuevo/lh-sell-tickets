@@ -1,4 +1,4 @@
-sellTickets.service('TicketService', function($http, $q, $location){
+sellTickets.service('TicketService', function($http, $q){
     this.newTicket = function(ticket){
   		var deferred = $q.defer();
 		return $http({

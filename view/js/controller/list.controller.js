@@ -1,3 +1,3 @@
 sellTickets.controller('ListController', ['$scope', function($scope){
-    $scope.competitors = [{name:"pepe",mail:"pepe@gmail.com",inmortal:2}];
+    $scope.tickets = [{name:"pepe",mail:"pepe@gmail.com",inmortal:2}];
 }]);

@@ -1,17 +1,30 @@
-<form>
+<form ng-submit="submitForm()">
     <div class="form-group">
         <label class="control-label" for="name">Nombre:</label>
-        <input class="form-control" id="name" type="text" ng-model="name" placeholder="pepito@gmail.com">
+        <input class="form-control" id="name" type="text" placeholder="pepito@gmail.com" ng-model="user.mail">
     </div>
     <div class="form-group">
         <label class="control-label" for="mail">Contraseña:</label>
-        <input class="form-control" id="mail" type="password">
+        <input class="form-control" id="mail" type="password" ng-model="user.pass1">
     </div>
     <div class="form-group">
         <label class="control-label" for="mail">Confirmar contraseña:</label>
-        <input class="form-control" id="mail" type="password">
+        <input class="form-control" id="mail" type="password" ng-model="user.pass2">
     </div>
     <div class="form-group">
-        <button class="btn btn-success"><i class="fa fa-plus-circle" aria-hidden="true"></i> Añadir</button>
+        <button type="submit" class="btn btn-success"><i class="fa fa-plus-circle" aria-hidden="true"></i> Añadir</button>
     </div>
 </form>
+
+<div class="modal fade" id="modalRegister" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Usuario registreado</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Vivaaaa!!!</button>
+            </div>
+        </div>
+    </div>
+</div>

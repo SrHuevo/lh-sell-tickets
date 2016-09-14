@@ -32,6 +32,6 @@ sellTickets.config(function($routeProvider) {
         resolve : loginResolve
     })
     .otherwise({
-        redirectTo: '/login',
+        redirectTo: '/ticket',
     });
 });

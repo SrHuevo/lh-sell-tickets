@@ -1,12 +1,13 @@
-var Competitor = require('../model/competitor.model');
+var Competitor = require('../model/ticket.model');
 var UserService = require('../service/user.service');
+var CryptoUtil = require('../util/crypto.util');
 
 module.exports.controller = function(app) {
 	app.get('/api/venta', function(req, resp){
-		UserService.isPassCorrect(UserService.decrypAuthorization(req.get('Authorization')), function(){
-			Competitor.find({}, function(err, competitors) {
+		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function(){
+			Competitor.find({}, function(err, tickets) {
 				if (err) throw err;
-				resp.write(JSON.stringify(competitors));
+				resp.write(JSON.stringify(tickets));
 				resp.end();
 			});
 		}, function(err) {
@@ -16,7 +17,7 @@ module.exports.controller = function(app) {
 	});
 
 	app.put('/api/venta', function(req, resp) {
-		UserService.isPassCorrect(UserService.decrypAuthorization(req.get('Authorization')), function() {
+		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function() {
 			console.log(req.body);
 			var c = new Competitor(req.body);
 			c.save(function(err){

@@ -1,4 +1,4 @@
-sellTickets.controller('TicketController', ['$scope', function($scope, LoginService, TicketService){
+sellTickets.controller('TicketController', function($scope, LoginService, TicketService){
     inicializeTicket();
     $scope.submitForm = function(){
         TicketService.newTicket($scope.ticket).then(
@@ -14,4 +14,4 @@ sellTickets.controller('TicketController', ['$scope', function($scope, LoginServ
     function inicializeTicket(){
         $scope.ticket={name:'', mail:'', inmortal: false};
     }
-}]);
+});
