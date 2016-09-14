@@ -9,7 +9,7 @@ var ticketSchema = new Schema({
     changeDate:Date
 });
 
-var Competitor = mongoose.model('Competitor', ticketSchema);
+var Ticket = mongoose.model('Ticket', ticketSchema);
 
 ticketSchema.pre('save', function(next, done){
     num++;
@@ -17,4 +17,4 @@ ticketSchema.pre('save', function(next, done){
     next();
     done();
 });
-module.exports = Competitor;
+module.exports = Ticket;
