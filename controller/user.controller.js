@@ -13,16 +13,16 @@ module.exports.controller = function(app) {
 	});
 
 	app.put('/api/user', function(req, resp) {
-        // UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function() {
+        UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function() {
     		var u = new User(req.body);
     		u.save(function(err){
     			if(err) throw err;
     			resp.end();
     		});
-        // }, function(err) {
-        //     resp.status(403);
-        //     resp.write(err);
-        //     resp.end();
-        // });
+        }, function(err) {
+            resp.status(403);
+            resp.write(err);
+            resp.end();
+        });
 	});
 }
