@@ -3,6 +3,8 @@ var CryptoUtil = require('../util/crypto.util');
 
 module.exports.isPassCorrect = function(user, success, error){
     return User.findOne({mail:user.mail}, function(err, userDB){
+        console.log(userDB);
+        console.log({user: user.mail, pass: CryptoUtil.encrypPass(user.pass)});
         if(err){
             error(err);
             return;

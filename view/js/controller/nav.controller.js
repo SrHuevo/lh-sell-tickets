@@ -1,7 +1,5 @@
-isLogin = true;
-
 sellTickets.controller('NavController', ['$scope', function($scope){
-    $scope.isLogin = isLogin;
+    $scope.getCookie = getCookie;
     $scope.salir = function(){
         console.log("salir");
     }

@@ -1,10 +1,21 @@
 var sellTickets = angular.module('SellTickets', ['ngRoute']);
 
 sellTickets.config(function($routeProvider) {
+    var loginResolve = {
+        authorize: ['$location', function($location) {
+            if(getCookie('Authorization') === undefined){
+                $location.path('/login');
+            } else {
+
+            }
+        }]
+    };
+
     $routeProvider
     .when('/register', {
         templateUrl : 'template/register.html',
-        controller : 'RegisterController'
+        controller : 'RegisterController',
+        resolve : loginResolve
     })
     .when('/login', {
         templateUrl : 'template/login.html',
@@ -12,13 +23,15 @@ sellTickets.config(function($routeProvider) {
     })
     .when('/list', {
         templateUrl : 'template/list.html',
-        controller : 'ListController'
+        controller : 'ListController',
+        resolve : loginResolve
     })
     .when('/ticket', {
         templateUrl : 'template/new-ticket.html',
-        controller : 'NewTicketController'
+        controller : 'NewTicketController',
+        resolve : loginResolve
     })
     .otherwise({
-        redirectTo: "/login",
+        redirectTo: '/login',
     });
 });

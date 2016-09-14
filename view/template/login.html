@@ -1,14 +1,14 @@
 <h2>Ingresa</h2>
-<form>
+<form name="loginForm" ng-submit="submitForm()">
     <div class="form-group">
         <label class="control-label" for="name">Email:</label>
-        <input class="form-control" id="name" type="text" placeholder="susanita@gmail.com">
+        <input class="form-control" name="mail" type="email" placeholder="susanita@gmail.com" ng-model="user.mail" required>
     </div>
     <div class="form-group">
         <label class="control-label" for="mail">Contraseña:</label>
-        <input class="form-control" id="mail" type="text">
+        <input class="form-control" name="pass" type="password" ng-model="user.pass" required>
     </div>
     <div class="form-group">
-        <button class="btn btn-success"><i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar</button>
+        <button type="submit" class="btn btn-success"><i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar</button>
     </div>
 </form>
