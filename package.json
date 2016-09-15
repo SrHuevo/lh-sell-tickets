@@ -29,6 +29,7 @@
     "mongoose-auto-increment": "^5.0.1",
     "multer": "^1.2.0",
     "nodemailer": "^2.6.0",
-    "nodemailer-smtp-transport": "^2.7.2"
+    "nodemailer-smtp-transport": "^2.7.2",
+    "request": "^2.74.0"
   }
 }
