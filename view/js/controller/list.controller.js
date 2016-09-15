@@ -1,3 +1,11 @@
-sellTickets.controller('ListController', ['$scope', function($scope){
-    $scope.tickets = [{name:"pepe",mail:"pepe@gmail.com",inmortal:2}];
-}]);
+sellTickets.controller('ListController', function($scope, LoginService, ListService){
+    $scope.tickets = [];
+
+    ListService.getTickets().then(
+        function(response){
+            $scope.tickets = response.data;
+        }, function() {
+            LoginService.logout();
+        }
+    );
+});

@@ -42,6 +42,3 @@ setInterval(function(){
 	  console.log('STATUS: ' + res.statusCode);
   });
 }, random());
-
-
-exports.connection = connection;

@@ -12,8 +12,6 @@ var ticketSchema = new Schema({
 var Ticket = mongoose.model('Ticket', ticketSchema);
 
 ticketSchema.pre('save', function(next, done){
-    num++;
-    this.num = num;
     next();
     done();
 });

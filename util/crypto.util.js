@@ -3,7 +3,6 @@ var crypto = require('crypto');
 module.exports.decrypAuthorization = function(header){
     var base64 = header.substr('Basic '.length);
     var ascii = new Buffer(base64, 'base64').toString('ascii');
-    console.log(ascii);
     return {
         mail: ascii.substr(0, ascii.indexOf(':')),
         pass: ascii.substr(ascii.indexOf(':') + 1)

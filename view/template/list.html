@@ -4,9 +4,9 @@
             <th>Nombre</th>
             <th>Correo</th>
             <th>Inmortal</th>
-            <th></th>
+            <!-- <th></th> -->
         </tr>
-        <tr>
+        <!-- <tr>
             <th>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
@@ -27,15 +27,15 @@
                     <option value="2">Inmortal</option>
                 </select>
             </th>
-            <th></th>
+            <th></th> -->
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="ticket in tickets">
             <td>{{ticket.name}}</td>
             <td>{{ticket.mail}}</td>
-            <td ng-class="ticket.inmortal === 2 ? 'success' : ticket.inmortal === 1 ? 'warning' : ''"></td>
-            <td><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></td>
+            <td ng-class="ticket.inmortal === 2 ? 'success' : ticket.inmortal === 1 ? 'warning' : ''">{{ticket.inmortal === 2 ? 'Inmortal' : ticket.inmortal === 1 ? 'En espera' : ''}}</td>
+            <!-- <td><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></td> -->
         </tr>
     </tbody>
 </table>

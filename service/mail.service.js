@@ -1,24 +1,45 @@
 var NodeMailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
+var QR = require('./qr.service');
 
 module.exports.sendMail = function(ticket){
-    nodemailer.createTransport('smtps://'+process.env.MAIL_SENDER_LHST+'%40gmail.com:'+process.env.PASS_SENDER_LHST+'@smtp.gmail.com');
+    var mailAccountUser = process.env.MAIL_SENDER_LHT;
+    var mailAccountPassword = process.env.PASS_SENDER_LHT;
 
-    // setup e-mail data with unicode symbols
-    var mailOptions = {
-        from: '"'+process.env.NAME_SENDER_LHST+'" <'+process.env.MAIL_SENDER_LHST+'@gmail.com>', // sender address
-        to: ticket.mail, // list of receivers
-        subject: '[La Hermandad] Entrada AZ', // Subject line
-        text: 'Aquí tiene su entrada' // plaintext body
-        // ,attachments: [{filename:'',
-        //     MailPenes: https://nodemailer.com/using-attachments/
-        //     Para los qr: https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=}]
-    };
+    var fromEmailAddress = process.env.MAIL_SENDER_LHT;
+    var toEmailAddress =  ticket.mail;
 
-    // send mail with defined transport object
-    transporter.sendMail(mailOptions, function(error, info){
-        if(error){
-            return console.log(error);
+    var transport = NodeMailer.createTransport(smtpTransport({
+        service: 'gmail',
+        auth: {
+            user: mailAccountUser,
+            pass: mailAccountPassword
+        },
+        tls: {
+            rejectUnauthorized: false
         }
-        console.log('Message sent: ' + info.response);
+    }));
+
+    QR.getQR(ticket, function(data){
+        var mail = {
+            from: fromEmailAddress,
+            to: toEmailAddress,
+            subject: "hello world!",
+            html: "<p>Su entradada queda adjunta</p>",
+            attachments: [{filename: 'entrada.png',
+                content: data,
+                encoding: 'base64'
+            }]
+        };
+
+        transport.sendMail(mail, function(error, response){
+            if(error){
+                console.log(error);
+            }else{
+                console.log("Message sent: " + response.message);
+            }
+
+            transport.close();
+        });
     });
 }

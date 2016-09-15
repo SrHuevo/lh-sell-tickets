@@ -3,7 +3,7 @@ sellTickets.service('TicketService', function($http, $q){
   		var deferred = $q.defer();
 		return $http({
 			method: 'PUT',
-			url: '/api/venta',
+			url: '/api/sell',
     		headers: {'Authorization': getCookie('Authorization')},
             data: ticket
 		});

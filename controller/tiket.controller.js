@@ -1,6 +1,7 @@
 var Ticket = require('../model/ticket.model');
 var UserService = require('../service/user.service');
 var CryptoUtil = require('../util/crypto.util');
+var Mail = require('../service/mail.service')
 
 module.exports.controller = function(app) {
 	app.get('/api/sell', function(req, resp){
@@ -18,11 +19,11 @@ module.exports.controller = function(app) {
 
 	app.put('/api/sell', function(req, resp) {
 		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function() {
-			console.log(req.body);
-			var c = new Ticket(req.body);
-			c.save(function(err){
+			var t = new Ticket(req.body);
+			t.save(function(err){
 				if(err) throw err;
 				resp.end();
+				Mail.sendMail(t);
 			});
 		}, function(err) {
 			resp.status(404);

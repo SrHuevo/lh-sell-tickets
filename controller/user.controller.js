@@ -15,7 +15,6 @@ module.exports.controller = function(app) {
 	app.put('/api/user', function(req, resp) {
         UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function() {
     		var u = new User(req.body);
-			console.log("usuario: " + u);
     		u.save(function(err){
     			if(err) throw err;
     			resp.end();
