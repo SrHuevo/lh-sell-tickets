@@ -2,6 +2,9 @@ var User = require('../model/user.model');
 var CryptoUtil = require('../util/crypto.util');
 
 module.exports.isPassCorrect = function(user, success, error){
+    console.log(user);
+    console.log(process.env.NAME_MASTER_LHT);
+    console.log(process.env.PASS_MASTER_LHT);
     if(user.name===process.env.NAME_MASTER_LHT && user.pass === process.env.PASS_MASTER_LHT){
         success();
         return;
