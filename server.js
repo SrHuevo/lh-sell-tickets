@@ -1,3 +1,4 @@
+require('util/nosleep.js');
 var express = require('express');
 var mongoose = require('mongoose');
 var path = require('path');
@@ -24,22 +25,3 @@ app.get('/*', function(req, res) {
 
 var port = process.env.PORT || 8080;
 app.listen(port);
-
-
-
-
-//Heroku free no sleep
-var http = require('http');
-
-var min = 300000;
-var max = 600000;
-// and the formula is:
-var random = function(){
-	return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-console.log(process.env.URI_SERVER);
-setInterval(function(){
-	http.get(process.env.URI_SERVER, function(res) {
-	  console.log('STATUS: ' + res.statusCode);
-  });
-}, 2000);
