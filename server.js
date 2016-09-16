@@ -37,8 +37,9 @@ var max = 600000;
 var random = function(){
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+console.log(process.env.URI_SERVER);
 setInterval(function(){
 	http.get(process.env.URI_SERVER, function(res) {
 	  console.log('STATUS: ' + res.statusCode);
   });
-}, random());
+}, 2000);
