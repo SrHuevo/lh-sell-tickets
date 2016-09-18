@@ -30,6 +30,7 @@ module.exports.sendMail = function(ticket, sellUser){
                     '<p>Le enviamos su pase para poder participar en el evento.</p>'+
                     '<p>El pase tiene un único uso por lo que le recomendamos que no lo duplique ni consienta que lo hagan. En caso de un pase duplicado tendrá valided únicamente el primero que haya sido usado.</p>'+
                     '<p>Le recomendamos que eche un vistazo a las normas e instrucciones pinchando <a href="http://www.lahermandad.es/apocalipsiszombie">aqui</a> antes de acudir al evento.</p>'+
+                    '<p>Su entrada consta de un código QR adjunto en este mensaje.</p>'+
                     '<p>Puede presentar su entrada en un dispositivo digital, impresa o calcada.</p>'+
                     '<p>Muchas gracias.</p>'+
                     '<p>Es posible que le enviemos más correos añadiendo información de última hora importante. Esté atento.</p>',
