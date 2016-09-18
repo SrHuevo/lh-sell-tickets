@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 
 var ticketSchema = new Schema({
-    user:{},
+    user:String,
     name:String,
     mail:String,
     inmortal:Number,
