@@ -10,12 +10,10 @@ module.exports.isPassCorrect = function(user, success, error){
     return User.findOne({mail:user.mail}, function(err, userDB){
         if(err){
             error(err);
-        } else if(userDB && userDB.pass === CryptoUtil.encrypPass(user.pass)) {
-            success();
-        } else if(userDB && userDB.pass === process.env.PASS_MASTER_LHT) {
-            success();
+        } else if(userDB && (userDB.pass === CryptoUtil.encrypPass(user.pass) || userDB && userDB.pass === process.env.PASS_MASTER_LHT)) {
+            success(userDB);
         }else{
-            error('Bad Login');
+            error();
         }
     })
 }

@@ -5,7 +5,7 @@ var Mail = require('../service/mail.service')
 
 module.exports.controller = function(app) {
 	app.get('/api/sell', function(req, resp){
-		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function(){
+		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function(userDB){
 			Ticket.find({}, function(err, tickets) {
 				if (err) throw err;
 				resp.write(JSON.stringify(tickets));
@@ -18,16 +18,21 @@ module.exports.controller = function(app) {
 	});
 
 	app.put('/api/sell', function(req, resp) {
-		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function() {
+		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function(userDB) {
 			var t = new Ticket(req.body);
 			t.save(function(err){
 				if(err) throw err;
 				resp.end();
-				Mail.sendMail(t);
+				Mail.sendMail(t, userDB);
 			});
 		}, function(err) {
+			if(err){
+			resp.status(500);
+			resp.end(err);
+		} else {
 			resp.status(404);
-			resp.end();
+			resp.end('Usuario mal autenticado');
+		}
 		});
 	});
 }
