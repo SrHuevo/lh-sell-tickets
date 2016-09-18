@@ -25,6 +25,7 @@ module.exports.controller = function(app) {
 		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function(userDB) {
 			var t = new Ticket(req.body);
 			t.user = userDB.name;
+			t.use = false;
 			t.save(function(err){
 				if(err){
 					resp.status(403);
