@@ -42,8 +42,19 @@ module.exports.sendMail = function(ticket, sellUser){
         transport.sendMail(mail, function(error, response){
             if(error){
                 console.log(error);
+                ticket.sendState = error;
+                ticket.save(function(err){
+    				if(err){
+    					console.error(err);
+    				}
+                });
             }else{
-                console.log("Message sent: " + response.message);
+                ticket.sendState = 'Enviado';
+                ticket.save(function(err){
+                    if(err){
+                        console.error(err);
+    				}
+                });
             }
 
             transport.close();

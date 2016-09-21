@@ -1,22 +1,26 @@
 <h3>Presiona el tabulador para cambiar de registro</h3>
-<form ng-submit="submitForm()">
+<button type="button" class="btn btn-warning" ng-show="ticket._id !== undefined" ng-click="new()"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Crear Nuevo</button>
+<form ng-submit="submitForm(ticket)">
     <div class="form-group">
         <label class="control-label" for="name">Nombre y apellidos:</label>
-        <input class="form-control" name="name" type="text" ng-model="ticket.name" placeholder="Manolo Perez García">
+        <input class="form-control" id="name" type="text" ng-model="ticket.name" placeholder="Manolo Perez García">
     </div>
     <div class="form-group">
         <label class="control-label" for="mail">Email:</label>
-        <input class="form-control" name="mail" ng-model="ticket.mail" type="text" placeholder="manolo@gmail.com">
+        <input class="form-control" id="mail" ng-model="ticket.mail" type="text" placeholder="manolo@gmail.com">
     </div>
     <div class="form-group">
-        <button type="button" class="btn" ng-class="inmortal ? 'btn-success' : 'btn-default'" ng-click="inmortal = !inmortal">
-            <input type="hidden" name="inmortal" ng-model="ticket.inmortal">
-            <i class="fa" ng-class="inmortal ? 'fa-check-square-o' : 'fa-square-o'" aria-hidden="true"></i>
+        <button type="button" class="btn" ng-init="inmortal=ticket.inmortal" ng-class="ticket.inmortal === 0 ? 'btn-default' : 'btn-success'" ng-click="changeInmortal()">
+            <input type="hidden" ng-model="ticket.inmortal">
+            <i class="fa" ng-class="ticket.inmortal === 0 ? 'fa-square-o' : 'fa-check-square-o'" aria-hidden="true"></i>
             <span>Inmortal</span>
         </button>
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-success"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Enviar</button>
+        <button ng-show="ticket._id === undefined" type="submit" class="btn btn-success"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Enviar</button>
+        <button ng-show="ticket._id !== undefined" type="button" class="btn btn-primary" ng-click="reSend()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Reenviar Mail</button>
+        <button ng-show="ticket._id !== undefined" type="button" class="btn btn-primary" ng-click="update()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
+        <button ng-show="ticket._id !== undefined" type="button" class="btn btn-danger" ng-click="delete()"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
     </div>
 </form>
 
@@ -26,6 +30,46 @@
             <div class="modal-body">
                 <p>La entada se está intentado enviar, a lo mejor si hay algun error te aviso, pero no estoy seguro de que vaya a programar eso.</p>
                 <p>Puedes consultar su estado en la lista, eso seguro... O no jujujujujija</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Poh vale</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Acabas de eliminar la entrada, más vale que no lo hicieras sin querer</p>
+                <p>Bueno en realidad no me fio ni mierda de ti y no la he borrado del todo, si te has confundido avisa a Dani anda...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Madre mia espero no haberla liado parda</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Acabas de "actualizar" una entrada, si te has confundido avisa a Dani...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Rezare al dios Hermaguedon!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalReSend" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Vamos a intentar enviarlo de nuevo, a ver que pasa...</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Poh vale</button>

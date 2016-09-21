@@ -10,4 +10,30 @@ sellTickets.service('TicketService', function($http, $q){
             data: newTicket
 		});
 	};
+
+
+    this.getTicket = function(ticketId){
+        return $http({
+			method: 'GET',
+			url: '/api/sell',
+    		headers: {'Authorization': getCookie('Authorization')},
+            data: {id: ticketId}
+		});
+    }
+
+    this.delete = function(ticketId){
+        return $http({
+			method: 'DELETE',
+			url: '/api/sell/'+ ticketId,
+    		headers: {'Authorization': getCookie('Authorization')}
+		});
+    }
+
+    this.reSend = function(ticketId){
+        return $http({
+			method: 'POST',
+			url: '/api/sell/'+ ticketId,
+    		headers: {'Authorization': getCookie('Authorization')}
+		});
+    }
 });

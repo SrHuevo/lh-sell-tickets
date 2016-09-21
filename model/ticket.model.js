@@ -9,15 +9,29 @@ var ticketSchema = new Schema({
     sellDate: Date,
     use: Boolean,
     changeDate: Date,
-    securityCode: Number
+    securityCode: Number,
+    sendState: String,
+    pay: Boolean,
+    delete: Boolean
 });
 
-var Ticket = mongoose.model('Ticket', ticketSchema);
+var Ticket = mongoose.model('Ticket2', ticketSchema);
 
 ticketSchema.pre('save', function(next, done){
-    this.sellDate = new Date();
-    this.changeDate = new Date();
-    this.securityCode = Math.random();
+    if(!this.sellDate)
+        this.sellDate = new Date();
+    if(!this.sendState)
+        this.sendState = 'Intentándolo';
+    if(!this.changeDate)
+        this.changeDate = new Date();
+    if(!this.securityCode)
+        this.securityCode = Math.random();
+    if(!this.delete)
+        this.delete = false;
+    if(!this.pay)
+        this.pay = false;
+    if(!this.use)
+        this.use = false;
     next();
     done();
 });
