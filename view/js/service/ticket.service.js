@@ -36,4 +36,13 @@ sellTickets.service('TicketService', function($http, $q){
     		headers: {'Authorization': getCookie('Authorization')}
 		});
     }
+
+    this.update = function(ticket){
+        return $http({
+			method: 'POST',
+			url: '/api/sell',
+    		headers: {'Authorization': getCookie('Authorization')},
+            data: ticket
+		});
+    }
 });

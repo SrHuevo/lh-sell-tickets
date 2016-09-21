@@ -4,7 +4,8 @@ var CryptoUtil = require('../util/crypto.util');
 
 module.exports.controller = function(app) {
 	app.get('/api/user', function(req, resp){
-        UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function() {
+        UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function(userDB) {
+			resp.write(JSON.stringify(userDB));
     		resp.end();
         }, function(err) {
             resp.status(401);

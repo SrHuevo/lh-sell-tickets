@@ -29,7 +29,7 @@ module.exports.controller = function(app) {
 			t.save(function(err){
 				if(err){
 					console.error(err);
-					resp.status(403);
+					resp.status(500);
 					resp.end();
 				} else {
 					resp.end();
@@ -51,9 +51,28 @@ module.exports.controller = function(app) {
 			Ticket.findOneAndUpdate({_id: req.params.ticketId}, {$set:{sendMail:'Intentándolo'}}, {new: true}, function(err, ticket) {
 				if(err){
 					console.error(err);
-					resp.status(403);
+					resp.status(500);
 				}
 				Mail.sendMail(ticket, userDB);
+				resp.end();
+			});
+		}, function(err) {
+			if(err){
+				resp.status(500);
+			} else {
+				resp.status(401);
+			}
+			resp.end();
+		});
+	});
+
+	app.post('/api/sell', function(req, resp) {
+		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function(userDB) {
+			Ticket.findOneAndUpdate({_id: req.body._id}, {$set:req.body}, {new: true}, function(err, ticket) {
+				if(err){
+					console.error(err);
+					resp.status(500);
+				}
 				resp.end();
 			});
 		}, function(err) {
