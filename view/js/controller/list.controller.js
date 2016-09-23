@@ -26,8 +26,8 @@ sellTickets.controller('ListController', function($scope, $location, LoginServic
     }
 
     $scope.edit = function(ticket){
-        $location.path('/ticket');
         $location.search('ticket', ticket._id);
+        $location.path('/ticket');
     }
 
 });

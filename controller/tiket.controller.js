@@ -4,9 +4,10 @@ var CryptoUtil = require('../util/crypto.util');
 var Mail = require('../service/mail.service')
 
 module.exports.controller = function(app) {
-	app.get('/api/sell', function(req, resp){
+	app.get('/api/sell/:id?', function(req, resp){
 		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function(userDB){
-			var search = req.body.id ? {'id': req.body.id, 'delete':false} : {'delete':false};
+			var search = req.params.id ? {'_id': req.params.id, 'delete':false} : {'delete':false};
+			console.log(search);
 			Ticket.find(search).sort('-date').exec(function(err, tickets) {
 				if(err){
 					resp.status(500);
@@ -30,11 +31,12 @@ module.exports.controller = function(app) {
 				if(err){
 					console.error(err);
 					resp.status(500);
-					resp.end();
 				} else {
-					resp.end();
 					Mail.sendMail(t, userDB);
+					console.log('creando ticket: ' + t)
+					resp.write(JSON.stringify(t));
 				}
+				resp.end();
 			});
 		}, function(err) {
 			if(err){
@@ -52,8 +54,11 @@ module.exports.controller = function(app) {
 				if(err){
 					console.error(err);
 					resp.status(500);
+				} else {
+					console.log('enviando mail a: ' + ticket);
+					Mail.sendMail(ticket, userDB);
+					resp.write(JSON.stringify(ticket));
 				}
-				Mail.sendMail(ticket, userDB);
 				resp.end();
 			});
 		}, function(err) {
@@ -72,6 +77,9 @@ module.exports.controller = function(app) {
 				if(err){
 					console.error(err);
 					resp.status(500);
+				} else {
+					console.log('actualizando entrada: ' + ticket);
+					resp.write(JSON.stringify(ticket));
 				}
 				resp.end();
 			});

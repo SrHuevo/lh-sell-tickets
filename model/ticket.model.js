@@ -35,4 +35,10 @@ ticketSchema.pre('save', function(next, done){
     next();
     done();
 });
+
+ticketSchema.pre('update', function(next, done){
+    this.changeDate = new Date();
+    next();
+    done();
+});
 module.exports = Ticket;

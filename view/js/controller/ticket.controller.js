@@ -18,9 +18,9 @@ sellTickets.controller('TicketController', function($scope, $location, LoginServ
         TicketService.delete($scope.ticket._id).then(function(resp){
             var ticket = angular.copy($scope.ticket);
             delete(ticket._id);
-            TicketService.newTicket(ticket).then(function(){
+            TicketService.newTicket(ticket).then(function(resp){
+                $scope.ticket = resp.data;
                 $('#modalUpdate').modal('show');
-                inicializeTicket();
             }, function(err) {
                 alert(err);
             });
@@ -41,7 +41,7 @@ sellTickets.controller('TicketController', function($scope, $location, LoginServ
     $scope.reSend = function(){
         TicketService.reSend($scope.ticket._id).then(function(resp){
             $('#modalReSend').modal('show');
-            inicializeTicket();
+            $scope.ticket = resp.data;
         }, function(err){
             alert(err);
         });

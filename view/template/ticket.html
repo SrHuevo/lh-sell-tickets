@@ -18,7 +18,7 @@
     </div>
     <div class="form-group">
         <button ng-show="ticket._id === undefined" type="submit" class="btn btn-success"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Enviar</button>
-        <button ng-show="ticket._id !== undefined" type="button" class="btn btn-primary" ng-click="reSend()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Reenviar Mail</button>
+        <button ng-show="ticket._id !== undefined" type="button" class="btn btn-primary" ng-click="reSend()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Reenviar</button>
         <button ng-show="ticket._id !== undefined" type="button" class="btn btn-primary" ng-click="update()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
         <button ng-show="ticket._id !== undefined" type="button" class="btn btn-danger" ng-click="delete()"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
     </div>
@@ -69,7 +69,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <p>Vamos a intentar enviarlo de nuevo, a ver que pasa...</p>
+                <p>Intentando enviar el mail a {{ticket.name}} con correo {{ticket.mail}}...</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Poh vale</button>

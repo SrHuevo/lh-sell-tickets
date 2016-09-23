@@ -15,10 +15,9 @@ sellTickets.service('TicketService', function($http, $q){
     this.getTicket = function(ticketId){
         return $http({
 			method: 'GET',
-			url: '/api/sell',
-    		headers: {'Authorization': getCookie('Authorization')},
-            data: {id: ticketId}
-		});
+			url: '/api/sell/'+ticketId,
+    		headers: {'Authorization': getCookie('Authorization')}
+        });
     }
 
     this.delete = function(ticketId){
