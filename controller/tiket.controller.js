@@ -7,7 +7,6 @@ module.exports.controller = function(app) {
 	app.get('/api/sell/:id?', function(req, resp){
 		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function(userDB){
 			var search = req.params.id ? {'_id': req.params.id, 'delete':false} : {'delete':false};
-			console.log(search);
 			Ticket.find(search).sort('-date').exec(function(err, tickets) {
 				if(err){
 					resp.status(500);
@@ -33,7 +32,6 @@ module.exports.controller = function(app) {
 					resp.status(500);
 				} else {
 					Mail.sendMail(t, userDB);
-					console.log('creando ticket: ' + t)
 					resp.write(JSON.stringify(t));
 				}
 				resp.end();
@@ -55,7 +53,6 @@ module.exports.controller = function(app) {
 					console.error(err);
 					resp.status(500);
 				} else {
-					console.log('enviando mail a: ' + ticket);
 					Mail.sendMail(ticket, userDB);
 					resp.write(JSON.stringify(ticket));
 				}
@@ -78,7 +75,6 @@ module.exports.controller = function(app) {
 					console.error(err);
 					resp.status(500);
 				} else {
-					console.log('actualizando entrada: ' + ticket);
 					resp.write(JSON.stringify(ticket));
 				}
 				resp.end();
