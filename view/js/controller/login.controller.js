@@ -7,7 +7,7 @@ sellTickets.controller('LoginController', function($scope, $location, LoginServi
                 setCookie('Authorization', getAuthorization(user), 100);
                 $location.path('/ticket');
             }, function() {
-
+                alert('A introducido malamente el usuario o la contraseña.\n¿A quién pretendes engañar?')
                 LoginService.logout();
             }
     )};
