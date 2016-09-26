@@ -70,6 +70,12 @@ module.exports.controller = function(app) {
 
 	app.post('/api/sell', function(req, resp) {
 		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function(userDB) {
+			if(userDB.permisionLevel < 3){
+				console.error(err);
+				resp.status(500);
+				resp.end();
+				return;
+			}
 			Ticket.findOneAndUpdate({_id: req.body._id}, {$set:req.body}, {new: true}, function(err, ticket) {
 				if(err){
 					console.error(err);

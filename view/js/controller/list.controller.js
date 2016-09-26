@@ -9,7 +9,7 @@ sellTickets.controller('ListController', function($scope, $location, LoginServic
     ListService.getTickets().then(function(response){
         $scope.tickets = response.data;
         $scope.tickets.forEach(function(e,i){
-            var d = new Date();
+            var d = new Date(e.sellDate);
             $scope.tickets[i].sellDate = d.getFullYear()+'/'+d.getMonth()+'/'+d.getDay()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()
         });
     }, function() {
