@@ -10,7 +10,7 @@ sellTickets.controller('ListController', function($scope, $location, LoginServic
         $scope.tickets = response.data;
         $scope.tickets.forEach(function(e,i){
             var d = new Date(e.sellDate);
-            $scope.tickets[i].sellDate = d.getFullYear()+'/'+d.getMonth()+1+'/'+d.getDay()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()
+            $scope.tickets[i].sellDate = d.getFullYear()+'/'+(d.getMonth()+1)+'/'+d.getDay()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()
         });
     }, function() {
         LoginService.logout();
