@@ -57,16 +57,18 @@ module.exports.controller = function(app) {
 			var search = {'delete':false};
 			search.inmortal = 0;
 			Ticket.find(search).exec(function(err, tickets) {
-				console.log('tickets:');
-				console.log(tickets);
-				console.log('_____________');
 				if(err){
 					resp.status(500);
 					resp.end();
 				} else {
-					tickets.forEach(function(e,i){
-						Mail.sendMailFinal(e, i);
-					});
+					var i = 0;
+					var interval = setInterval(function(){
+						Mail.sendMailFinal(tickets[i], i);
+						i++;
+						if(i===tickets.length){
+							clearInterval(interval);
+						}
+					},500);
 					resp.end();
 				}
 			});
