@@ -63,7 +63,6 @@ module.exports.controller = function(app) {
 				} else {
 					var i = 0;
 					var interval = setInterval(function(){
-						console.log('------------------> ' + tickets[i].sellDate);
 						Mail.sendMailFinal(tickets[i], i);
 						i++;
 						if(i===tickets.length){
