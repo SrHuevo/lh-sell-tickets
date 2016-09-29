@@ -68,7 +68,7 @@ module.exports.controller = function(app) {
 						if(i===tickets.length){
 							clearInterval(interval);
 						}
-					},500);
+					},2000);
 					resp.end();
 				}
 			});

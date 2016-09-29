@@ -63,9 +63,9 @@ module.exports.sendMail = function(ticket, sellUser){
 }
 
 module.exports.sendMailFinal = function(ticket, numero){
-    // if(ticket.sendState === 'Enviado' || ticket.sendState === 'Intentándolo'){
-    //     return;
-    // }
+    if(ticket.sendState === 'Enviado' || ticket.sendState === 'Intentándolo'){
+        return;
+    }
     var mailAccountUser = process.env.USER_SENDER_LHT;
     var mailAccountPassword = process.env.PASS_SENDER_LHT;
     var mailAccountMail = process.env.MAIL_SENDER_LHT;
