@@ -45,7 +45,8 @@
             <td ng-class="ticket.inmortal === 2 ? 'danger' : ticket.inmortal === 1 ? 'warning' : ''">{{ticket.inmortal === 2 ? 'Inmortal' : ticket.inmortal === 1 ? 'En espera' : ''}}</td>
             <td>{{ticket.user}}</td>
             <td>{{ticket.sendState === 'Enviado' || ticket.sendState === 'Intentándolo' ? ticket.sendState : 'Error'}}</td>
-            <td><i ng-show="ticket.user === user.mail || user.permisionLevel > 2" class="fa fa-pencil-square-o fa-2x" aria-hidden="true" ng-click="edit(ticket)"></i></td>
+            <!-- <td><i ng-show="ticket.user === user.mail || user.permisionLevel > 2" class="fa fa-pencil-square-o fa-2x" aria-hidden="true" ng-click="edit(ticket)"></i></td> -->
+            <td>Para editar habla con dani</td>
         </tr>
     </tbody>
 </table>
