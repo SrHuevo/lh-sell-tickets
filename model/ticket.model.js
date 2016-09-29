@@ -22,8 +22,6 @@ ticketSchema.pre('save', function(next, done){
         this.sellDate = new Date();
     if(!this.sendState)
         this.sendState = 'Intentándolo';
-    if(!this.changeDate)
-        this.changeDate = new Date();
     if(!this.securityCode)
         this.securityCode = Math.random();
     if(!this.delete)
@@ -32,6 +30,7 @@ ticketSchema.pre('save', function(next, done){
         this.pay = false;
     if(!this.use)
         this.use = false;
+    this.changeDate = new Date();
     next();
     done();
 });

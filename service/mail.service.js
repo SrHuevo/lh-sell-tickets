@@ -63,9 +63,9 @@ module.exports.sendMail = function(ticket, sellUser){
 }
 
 module.exports.sendMailFinal = function(ticket, numero){
-    if(ticket.sendState === 'Enviado' || ticket.sendState === 'Intentándolo'){
-        return;
-    }
+    // if(ticket.sendState === 'Enviado' || ticket.sendState === 'Intentándolo'){
+    //     return;
+    // }
     var mailAccountUser = process.env.USER_SENDER_LHT;
     var mailAccountPassword = process.env.PASS_SENDER_LHT;
     var mailAccountMail = process.env.MAIL_SENDER_LHT;
@@ -96,7 +96,8 @@ module.exports.sendMailFinal = function(ticket, numero){
                     '<p>Deberá acudir al aula '+(numero < 200 ? '105' : '106')+' en la primera planta del aulario I, primer edificio de la izquierda según entras por la entrada de peatones, a las 17:00. En caso de llegar más tarde de las 17:30 id directamente a la zona de infección que se encuentra en la cafetería.</p>' +
                     '<p>Le volvemos a enviar su código de participante por si acaso lo has perdido/borrado/no llegó... Recuerde que el pase tiene un único uso, por lo que le recomendamos que no lo duplique ni consienta que lo hagan. En caso de un pase duplicado tendrá valided únicamente el primero que haya sido usado.</p>'+
                     '<p>Puede presentar su entrada en un dispositivo digital, impresa o calcada.</p>'+
-                    '<p>Muchas gracias.</p>',
+                    '<p>Muchas gracias.</p>'+
+                    '<p>PD: Disculpad si este mail os llegó duplicado, en ese caso éste es el válido.</p>',
             attachments: [{filename: 'entrada.png',
                 content: data,
                 encoding: 'base64'

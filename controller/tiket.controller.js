@@ -7,7 +7,7 @@ module.exports.controller = function(app) {
 	app.get('/api/sell/:id?', function(req, resp){
 		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function(userDB){
 			var search = req.params.id ? {'_id': req.params.id, 'delete':false} : {'delete':false};
-			Ticket.find(search).sort('-date').exec(function(err, tickets) {
+			Ticket.find(search).sort('-sellDate').exec(function(err, tickets) {
 				if(err){
 					resp.status(500);
 					resp.end();
