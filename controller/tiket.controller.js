@@ -7,7 +7,7 @@ module.exports.controller = function(app) {
 	app.get('/api/sell/:id?', function(req, resp){
 		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function(userDB){
 			var search = req.params.id ? {'_id': req.params.id, 'delete':false} : {'delete':false};
-			Ticket.find(search).sort('-sellDate').exec(function(err, tickets) {
+			Ticket.find(search).sort({sellDate:+1}).exec(function(err, tickets) {
 				if(err){
 					resp.status(500);
 					resp.end();
@@ -56,13 +56,14 @@ module.exports.controller = function(app) {
 			}
 			var search = {'delete':false};
 			search.inmortal = 0;
-			Ticket.find(search).exec(function(err, tickets) {
+			Ticket.find(search).sort({sellDate:+1}).exec(function(err, tickets) {
 				if(err){
 					resp.status(500);
 					resp.end();
 				} else {
 					var i = 0;
 					var interval = setInterval(function(){
+						console.log('------------------> ' + tickets[i].sellDate);
 						Mail.sendMailFinal(tickets[i], i);
 						i++;
 						if(i===tickets.length){

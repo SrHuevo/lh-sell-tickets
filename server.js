@@ -6,6 +6,7 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise;
+mongoose.set('debug', false);
 var connection = mongoose.connect('mongodb://'+process.env.URI_MONGO_LHT, {user:process.env.USER_MONGO_LHT, pass:process.env.PASS_MONGO_LHT});
 
 var app = express();
