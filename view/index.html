@@ -25,6 +25,7 @@
                 <ul class="nav navbar-nav">
                     <li ng-show="getCookie('Authorization') !== undefined" ng-class="$location.path() === '/ticket' ? 'active' : ''" ><a href="#ticket"><i class="fa fa-ticket" aria-hidden="true"></i> Entradas<span class="sr-only">(current)</span></a></li>
                     <li ng-show="getCookie('Authorization') !== undefined" ng-class="$location.path() === '/list' ? 'active' : ''" ><a href="#list"><i class="fa fa-list-alt" aria-hidden="true"></i> Listado</a></li>
+                    <li ng-show="user.permisionLevel > 2" ng-class="$location.path() === '/mailMasive' ? 'active' : ''" ><a href="#mailMasive"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Envio masivo</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li ng-show="getCookie('Authorization') !== undefined" ng-class="$location.path() === '/register' ? 'active' : ''" ><a href="#register"><i class="fa fa-plus-circle" aria-hidden="true"></i> Añadir usuario</a></li></li>
@@ -51,5 +52,7 @@
     <script src="/js/controller/register.controller.js"></script>
     <script src="/js/service/list.service.js"></script>
     <script src="/js/controller/list.controller.js"></script>
+    <script src="/js/service/mailmasive.service.js"></script>
+    <script src="/js/controller/mailmasive.controller.js"></script>
 </body>
 </html>

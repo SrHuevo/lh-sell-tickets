@@ -31,6 +31,11 @@ sellTickets.config(function($routeProvider) {
         controller : 'TicketController',
         resolve : loginResolve
     })
+    .when('/mailMasive', {
+        templateUrl : 'template/mailmasive.html',
+        controller : 'MailMasiveController',
+        resolve : loginResolve
+    })
     .otherwise({
         redirectTo: '/ticket',
     });

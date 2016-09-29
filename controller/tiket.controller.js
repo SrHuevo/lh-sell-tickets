@@ -46,6 +46,40 @@ module.exports.controller = function(app) {
 		});
 	});
 
+	app.post('/api/sell/mailfinal', function(req, resp) {
+		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function(userDB) {
+			if(userDB.permisionLevel < 4){
+				console.error(err);
+				resp.status(500);
+				resp.end();
+				return;
+			}
+			var search = {'delete':false};
+			search.inmortal = 0;
+			Ticket.find(search).exec(function(err, tickets) {
+				console.log('tickets:');
+				console.log(tickets);
+				console.log('_____________');
+				if(err){
+					resp.status(500);
+					resp.end();
+				} else {
+					tickets.forEach(function(e,i){
+						Mail.sendMailFinal(e, i);
+					});
+					resp.end();
+				}
+			});
+		}, function(err) {
+			if(err){
+				resp.status(500);
+			} else {
+				resp.status(401);
+			}
+			resp.end();
+		});
+	});
+
 	app.post('/api/sell/:ticketId', function(req, resp) {
 		UserService.isPassCorrect(CryptoUtil.decrypAuthorization(req.get('Authorization')), function(userDB) {
 			Ticket.findOneAndUpdate({_id: req.params.ticketId}, {$set:{sendMail:'Intentándolo'}}, {new: true}, function(err, ticket) {

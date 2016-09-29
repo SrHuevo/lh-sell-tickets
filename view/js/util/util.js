@@ -22,3 +22,9 @@ function setCookie(cname, cvalue, exdays) {
 function getAuthorization(user){
     return 'Basic ' + btoa(user.mail + ':' + user.pass);
 }
+
+function decodeAuthorization(auth){
+    var ascii = atob(auth.substr('Basic '.length));
+    var index = ascii.indexOf(':');
+    return {mail: ascii.substr(0,index) ,pass: ascii.substr(index+1)};
+}

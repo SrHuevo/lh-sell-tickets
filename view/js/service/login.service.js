@@ -6,7 +6,6 @@ sellTickets.service('LoginService', function($http, $q, $location){
         } else {
             authorization = getCookie('Authorization')
         }
-  		var deferred = $q.defer();
 		return $http({
 			method: 'GET',
 			url: '/api/user',
