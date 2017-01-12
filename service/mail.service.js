@@ -6,7 +6,7 @@ module.exports.sendMail = function(ticket, sellUser) {
     var mailAccountUser = process.env.USER_SENDER_LHT;
     var mailAccountPassword = process.env.PASS_SENDER_LHT;
     var mailAccountMail = process.env.MAIL_SENDER_LHT;
-    var test = process.env.TEST;
+    var test = process.env.TEST === 'true';
     var toEmailAddress = ticket.mail;
 
     var transport = NodeMailer.createTransport(smtpTransport({
